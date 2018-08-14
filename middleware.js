@@ -3,9 +3,8 @@ import {
   ASYNC_START,
   ASYNC_END,
   LOGIN,
-  LOGOUT,
-  UPDATE_TIME
-} from './constants/actionTypes';
+  LOGOUT
+} from './src/constant/actionTypes';
 
 const promiseMiddleware = store => next => action => {
   if (isPromise(action.payload)) {
@@ -47,8 +46,8 @@ const promiseMiddleware = store => next => action => {
 
 const localStorageMiddleware = store => next => action => {
   // set localstorage
-  if (process.env.NODE_ENV !== 'production' && action.type !== UPDATE_TIME) {
-    // console.log(store.getState())
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(store.getState())
   }
   if ((/*action.type === REGISTER ||*/ action.type === LOGIN) && action.payload) {
     if (!action.error) {
